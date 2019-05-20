@@ -14,6 +14,7 @@
 		1893D077229328BE006E9B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1893D075229328BE006E9B00 /* LaunchScreen.storyboard */; };
 		1893D07F229329A3006E9B00 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D07E229329A3006E9B00 /* MapViewController.swift */; };
 		1893D08522932EDD006E9B00 /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D08422932EDD006E9B00 /* MapState.swift */; };
+		1893D08722933891006E9B00 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D08622933891006E9B00 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1893D078229328BE006E9B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1893D07E229329A3006E9B00 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1893D08422932EDD006E9B00 /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
+		1893D08622933891006E9B00 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1893D07E229329A3006E9B00 /* MapViewController.swift */,
+				1893D08622933891006E9B00 /* DataController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1893D08722933891006E9B00 /* DataController.swift in Sources */,
 				1893D08522932EDD006E9B00 /* MapState.swift in Sources */,
 				1893D06A229328BD006E9B00 /* AppDelegate.swift in Sources */,
 				1893D07F229329A3006E9B00 /* MapViewController.swift in Sources */,
