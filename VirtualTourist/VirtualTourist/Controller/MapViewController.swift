@@ -8,24 +8,59 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+import CoreData
 
 let mapStateKey: String = "mapStateKey"
 
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: MKMapView!
+    //var pins: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let savedRegion = UserDefaults.standard.loadMapState() {
             mapView.setRegion(savedRegion, animated: true)
         }
+        
+        let longPressGestureRecog = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation(press:)))
+        longPressGestureRecog.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(longPressGestureRecog)
     }
+    
+@objc func addAnnotation(press: UILongPressGestureRecognizer) {
+    if press.state == .began {
+        let location = press.location(in: mapView)
+        let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        mapView.addAnnotation(annotation)
+        }
+    }
+
 }
 
 extension MapViewController: MKMapViewDelegate {
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         UserDefaults.standard.saveMapState(region: mapView.region)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        let reuseID = "pin"
+        
+        if let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKPinAnnotationView {
+            return pinView
+        } else {
+            let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            pinView.canShowCallout = false
+            pinView.animatesDrop = true
+            return pinView
+        }
     }
 }
 
@@ -46,3 +81,4 @@ extension UserDefaults {
         return nil
     }
 }
+
