@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet var mapView: MKMapView!
     var pins: [Pin] = []
+    let spinner = SpinnerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +86,26 @@ class MapViewController: UIViewController {
         }
     }
     
+    func showAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func showSpinner(){
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+    }
+    
+    func hideSpinner(){
+        DispatchQueue.main.async {
+            self.spinner.willMove(toParent: nil)
+            self.spinner.view.removeFromSuperview()
+            self.spinner.removeFromParent()
+        }
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -112,16 +133,40 @@ extension MapViewController: MKMapViewDelegate {
         if let pinAnnotation = view.annotation as? PinAnnotation,
             let pinDetailViewController = storyboard?.instantiateViewController(withIdentifier: "PinDetailViewController") as? PinDetailViewController {
             
+            if let images = pinAnnotation.pin.images, images.count > 0 {
+                pinDetailViewController.pinAnnotation = pinAnnotation
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(pinDetailViewController, animated: true)
+                }
+                return
+            }
+             DispatchQueue.main.async {
+                self.showSpinner()
+            }
             NetworkClient.searchPhotosFor(latitude: pinAnnotation.coordinate.latitude, longitude: pinAnnotation.coordinate.longitude) { (response, error) in
                 if response.count > 0 {
+                    for imageUrl in response {
+                        let photo = Photo(context: DataController.shared.viewContext)
+                        photo.imageUrl = imageUrl
+                        
+                        
+                        if let imageData = try? Data(contentsOf: imageUrl) {
+                            photo.image = imageData
+                            pinAnnotation.pin.addToImages(photo)
+                            try? DataController.shared.viewContext.save()
+                        }
+                    }
+                    
                     pinDetailViewController.pinAnnotation = pinAnnotation
-                    pinDetailViewController.imageUrls = response
+                    
                     DispatchQueue.main.async {
-                         self.navigationController?.pushViewController(pinDetailViewController, animated: true)
+                        self.hideSpinner()
+                        self.navigationController?.pushViewController(pinDetailViewController, animated: true)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        //TO DO: show alert: there is no images for this location
+                        self.hideSpinner()
+                        self.showAlert(title: "Sorry", message: "No images were found for this location or something went wrong.")
                     }
                 }
             }

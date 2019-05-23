@@ -12,7 +12,7 @@ import CoreData
 class DataController {
     
     static let shared = DataController()
-    
+
     private init () {
         persistentContainer = NSPersistentContainer(name: "VirtualTourist")
         backgroundContext = persistentContainer.newBackgroundContext()

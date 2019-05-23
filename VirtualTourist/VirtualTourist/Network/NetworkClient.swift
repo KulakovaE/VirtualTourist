@@ -73,6 +73,11 @@ class NetworkClient {
                             }
                         }
                     }
+                } else {
+                    DispatchQueue.main.async {
+                        completion([],nil)
+                    }
+                    
                 }
             }
             

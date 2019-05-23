@@ -20,6 +20,7 @@
 		1893D0AE229553C0006E9B00 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0AD229553C0006E9B00 /* NetworkClient.swift */; };
 		1893D0B1229564FA006E9B00 /* SearchPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0B0229564FA006E9B00 /* SearchPhotosResponse.swift */; };
 		1893D0B322957112006E9B00 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0B222957112006E9B00 /* PhotoCollectionViewCell.swift */; };
+		1893D0B522968281006E9B00 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0B422968281006E9B00 /* SpinnerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		1893D0AD229553C0006E9B00 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		1893D0B0229564FA006E9B00 /* SearchPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosResponse.swift; sourceTree = "<group>"; };
 		1893D0B222957112006E9B00 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		1893D0B422968281006E9B00 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				1893D0AB22954500006E9B00 /* PinDetailViewController.swift */,
+				1893D0B422968281006E9B00 /* SpinnerViewController.swift */,
 				1893D07E229329A3006E9B00 /* MapViewController.swift */,
 				1893D08622933891006E9B00 /* DataController.swift */,
 			);
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1893D0B522968281006E9B00 /* SpinnerViewController.swift in Sources */,
 				1893D0B1229564FA006E9B00 /* SearchPhotosResponse.swift in Sources */,
 				1893D0B322957112006E9B00 /* PhotoCollectionViewCell.swift in Sources */,
 				1893D08722933891006E9B00 /* DataController.swift in Sources */,
