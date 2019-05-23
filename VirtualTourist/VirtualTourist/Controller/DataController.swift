@@ -11,8 +11,12 @@ import CoreData
 
 class DataController {
     
-    static let shared = DataController(modelName: "VirtualTourist")
+    static let shared = DataController()
     
+    private init () {
+        persistentContainer = NSPersistentContainer(name: "VirtualTourist")
+        backgroundContext = persistentContainer.newBackgroundContext()
+    }
     
     let persistentContainer:NSPersistentContainer
     
@@ -21,13 +25,7 @@ class DataController {
     }
     
     let backgroundContext:NSManagedObjectContext!
-    
-    init(modelName:String) {
-        persistentContainer = NSPersistentContainer(name: modelName)
         
-        backgroundContext = persistentContainer.newBackgroundContext()
-    }
-    
     func configureContexts() {
         viewContext.automaticallyMergesChangesFromParent = true
         backgroundContext.automaticallyMergesChangesFromParent = true

@@ -41,7 +41,84 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="313" y="-534"/>
+            <point key="canvasLocation" x="313" y="-469"/>
+        </scene>
+        <!--Pin Detail View Controller-->
+        <scene sceneID="JiV-UO-CLO">
+            <objects>
+                <viewController storyboardIdentifier="PinDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BpO-xO-fL8" customClass="PinDetailViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gvK-Z5-ik8" customClass="PinDe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tw5-s3-dQm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="FVW-po-yyk"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BpO-xO-fL8" id="oFn-2L-iyQ"/>
+                                </connections>
+                            </mapView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vEB-cX-e80">
+                                <rect key="frame" x="0.0" y="224" width="375" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="enq-iT-a2d">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="DQ7-Ym-UQe" customClass="PhotoCollectionViewCell" customModule="VirtualTourist" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1dQ-J4-7Aa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="1dQ-J4-7Aa" secondAttribute="bottom" id="ARV-7S-gH3"/>
+                                            <constraint firstItem="1dQ-J4-7Aa" firstAttribute="leading" secondItem="DQ7-Ym-UQe" secondAttribute="leading" id="SNQ-ue-fRD"/>
+                                            <constraint firstAttribute="trailing" secondItem="1dQ-J4-7Aa" secondAttribute="trailing" id="ULP-Xr-R3I"/>
+                                            <constraint firstItem="1dQ-J4-7Aa" firstAttribute="top" secondItem="DQ7-Ym-UQe" secondAttribute="top" id="sDf-an-D95"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="1dQ-J4-7Aa" id="Yl2-C7-bjx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BpO-xO-fL8" id="uke-ms-xfx"/>
+                                    <outlet property="delegate" destination="BpO-xO-fL8" id="y9J-ps-zv8"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tw5-s3-dQm" firstAttribute="trailing" secondItem="cw8-SJ-oOY" secondAttribute="trailing" id="2uN-05-1eL"/>
+                            <constraint firstItem="Tw5-s3-dQm" firstAttribute="leading" secondItem="cw8-SJ-oOY" secondAttribute="leading" id="5u0-mS-Hy7"/>
+                            <constraint firstItem="cw8-SJ-oOY" firstAttribute="trailing" secondItem="vEB-cX-e80" secondAttribute="trailing" id="A0j-RT-fJn"/>
+                            <constraint firstItem="vEB-cX-e80" firstAttribute="top" secondItem="Tw5-s3-dQm" secondAttribute="bottom" id="DtW-Xa-eEK"/>
+                            <constraint firstItem="Tw5-s3-dQm" firstAttribute="top" secondItem="cw8-SJ-oOY" secondAttribute="top" id="IcE-nD-9wc"/>
+                            <constraint firstItem="vEB-cX-e80" firstAttribute="leading" secondItem="cw8-SJ-oOY" secondAttribute="leading" id="MLi-aR-IJh"/>
+                            <constraint firstItem="vEB-cX-e80" firstAttribute="bottom" secondItem="cw8-SJ-oOY" secondAttribute="bottom" id="v7K-ba-enR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cw8-SJ-oOY"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mapView" destination="Tw5-s3-dQm" id="Wcu-gV-Phq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bei-xV-EhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="-471.8140929535233"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Et-Qd-i4f">
@@ -59,7 +136,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHB-Zg-pns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-476" y="-534"/>
+            <point key="canvasLocation" x="-476" y="-469"/>
         </scene>
     </scenes>
 </document>

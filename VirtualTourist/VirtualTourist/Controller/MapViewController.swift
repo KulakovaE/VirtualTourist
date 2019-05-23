@@ -14,9 +14,9 @@ import CoreData
 let mapStateKey: String = "mapStateKey"
 
 class MapViewController: UIViewController {
-
+    
     @IBOutlet var mapView: MKMapView!
-    //var pins: [NSManagedObject] = []
+    var pins: [Pin] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +27,64 @@ class MapViewController: UIViewController {
         let longPressGestureRecog = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation(press:)))
         longPressGestureRecog.minimumPressDuration = 1.0
         mapView.addGestureRecognizer(longPressGestureRecog)
+        
+        self.pins = fetchData()
     }
     
-@objc func addAnnotation(press: UILongPressGestureRecognizer) {
-    if press.state == .began {
-        let location = press.location(in: mapView)
-        let coordinates = mapView.convert(location, toCoordinateFrom: mapView)
-
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinates
-        mapView.addAnnotation(annotation)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayData(pins: self.pins)
+        
+    }
+    
+    func fetchData() -> [Pin] {
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        if let result = try? DataController.shared.viewContext.fetch(fetchRequest) {
+            return result
+        } else {
+            return []
         }
     }
-
+    
+    func saveData(annotation: MKPointAnnotation) {
+        let pin = Pin(context: DataController.shared.viewContext)
+        pin.latitude = annotation.coordinate.latitude
+        pin.longitude = annotation.coordinate.longitude
+        self.pins.insert(pin, at: 0)
+        try? DataController.shared.viewContext.save()
+    }
+    
+    func displayData(pins: [Pin]) {
+        let annotations = pins.map { pin -> PinAnnotation in
+            let coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
+            let annotation = PinAnnotation(coordinate: coordinate, pin: pin)
+            return annotation
+        }
+        
+        let currentAnnotations = mapView.annotations
+        mapView.removeAnnotations(currentAnnotations)
+        mapView.addAnnotations(annotations)
+    }
+    
+    @objc func addAnnotation(press: UILongPressGestureRecognizer) {
+        if press.state == .began {
+            let location = press.location(in: mapView)
+            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            
+            let newPin = Pin(context: DataController.shared.viewContext)
+            newPin.latitude = coordinate.latitude
+            newPin.longitude = coordinate.longitude
+            
+            if let _ = try? DataController.shared.viewContext.save() {
+                self.pins.append(newPin)
+                let annotation = PinAnnotation(coordinate: coordinate, pin: newPin)
+                mapView.addAnnotation(annotation)
+            } else {
+                //TO DO: show Error Message
+            }
+        }
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -60,6 +105,26 @@ extension MapViewController: MKMapViewDelegate {
             pinView.canShowCallout = false
             pinView.animatesDrop = true
             return pinView
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let pinAnnotation = view.annotation as? PinAnnotation,
+            let pinDetailViewController = storyboard?.instantiateViewController(withIdentifier: "PinDetailViewController") as? PinDetailViewController {
+            
+            NetworkClient.searchPhotosFor(latitude: pinAnnotation.coordinate.latitude, longitude: pinAnnotation.coordinate.longitude) { (response, error) in
+                if response.count > 0 {
+                    pinDetailViewController.pinAnnotation = pinAnnotation
+                    pinDetailViewController.imageUrls = response
+                    DispatchQueue.main.async {
+                         self.navigationController?.pushViewController(pinDetailViewController, animated: true)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        //TO DO: show alert: there is no images for this location
+                    }
+                }
+            }
         }
     }
 }

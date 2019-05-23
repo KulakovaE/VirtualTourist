@@ -15,6 +15,11 @@
 		1893D07F229329A3006E9B00 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D07E229329A3006E9B00 /* MapViewController.swift */; };
 		1893D08522932EDD006E9B00 /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D08422932EDD006E9B00 /* MapState.swift */; };
 		1893D08722933891006E9B00 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D08622933891006E9B00 /* DataController.swift */; };
+		1893D0AA2295437F006E9B00 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0A92295437F006E9B00 /* PinAnnotation.swift */; };
+		1893D0AC22954500006E9B00 /* PinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0AB22954500006E9B00 /* PinDetailViewController.swift */; };
+		1893D0AE229553C0006E9B00 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0AD229553C0006E9B00 /* NetworkClient.swift */; };
+		1893D0B1229564FA006E9B00 /* SearchPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0B0229564FA006E9B00 /* SearchPhotosResponse.swift */; };
+		1893D0B322957112006E9B00 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893D0B222957112006E9B00 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		1893D07E229329A3006E9B00 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1893D08422932EDD006E9B00 /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		1893D08622933891006E9B00 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		1893D0A92295437F006E9B00 /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
+		1893D0AB22954500006E9B00 /* PinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDetailViewController.swift; sourceTree = "<group>"; };
+		1893D0AD229553C0006E9B00 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		1893D0B0229564FA006E9B00 /* SearchPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotosResponse.swift; sourceTree = "<group>"; };
+		1893D0B222957112006E9B00 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 		1893D068229328BD006E9B00 /* VirtualTourist */ = {
 			isa = PBXGroup;
 			children = (
+				1893D0AF22956444006E9B00 /* Network */,
 				1893D078229328BE006E9B00 /* Info.plist */,
 				1893D069229328BD006E9B00 /* AppDelegate.swift */,
 				1893D08022932DCE006E9B00 /* Model */,
@@ -75,6 +86,7 @@
 			children = (
 				1893D070229328BD006E9B00 /* VirtualTourist.xcdatamodeld */,
 				1893D08422932EDD006E9B00 /* MapState.swift */,
+				1893D0A92295437F006E9B00 /* PinAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -82,6 +94,7 @@
 		1893D08122932DDF006E9B00 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1893D0B222957112006E9B00 /* PhotoCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -89,6 +102,7 @@
 		1893D08222932DEE006E9B00 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1893D0AB22954500006E9B00 /* PinDetailViewController.swift */,
 				1893D07E229329A3006E9B00 /* MapViewController.swift */,
 				1893D08622933891006E9B00 /* DataController.swift */,
 			);
@@ -103,6 +117,15 @@
 				1893D075229328BE006E9B00 /* LaunchScreen.storyboard */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		1893D0AF22956444006E9B00 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1893D0AD229553C0006E9B00 /* NetworkClient.swift */,
+				1893D0B0229564FA006E9B00 /* SearchPhotosResponse.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,11 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1893D0B1229564FA006E9B00 /* SearchPhotosResponse.swift in Sources */,
+				1893D0B322957112006E9B00 /* PhotoCollectionViewCell.swift in Sources */,
 				1893D08722933891006E9B00 /* DataController.swift in Sources */,
+				1893D0AC22954500006E9B00 /* PinDetailViewController.swift in Sources */,
 				1893D08522932EDD006E9B00 /* MapState.swift in Sources */,
 				1893D06A229328BD006E9B00 /* AppDelegate.swift in Sources */,
 				1893D07F229329A3006E9B00 /* MapViewController.swift in Sources */,
+				1893D0AA2295437F006E9B00 /* PinAnnotation.swift in Sources */,
 				1893D072229328BD006E9B00 /* VirtualTourist.xcdatamodeld in Sources */,
+				1893D0AE229553C0006E9B00 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
