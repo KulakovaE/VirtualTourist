@@ -150,7 +150,7 @@ extension MapViewController: MKMapViewDelegate {
                         photo.imageUrl = imageUrl
                         
                         
-                        if let imageData = try? Data(contentsOf: imageUrl) {
+                        if let imageData = try? Data(contentsOf: imageUrl)  {
                             photo.image = imageData
                             pinAnnotation.pin.addToImages(photo)
                             try? DataController.shared.viewContext.save()

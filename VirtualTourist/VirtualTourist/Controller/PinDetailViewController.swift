@@ -117,15 +117,22 @@ extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell, let pinAnnotation = pinAnnotation else {
             fatalError("Unable to dequeue PhotoCollectionViewCell.")
         }
-        if let imageData = pinAnnotation.pin.images?.allObjects[indexPath.row] as? Data, let image = UIImage(data: imageData) {
-           cell.imageView.image = image
+        
+        guard let images = pinAnnotation.pin.images else { return cell }
+        let allImages = images.allObjects
+        if let photo = pinAnnotation.pin.images?.allObjects[indexPath.row] as? Photo,
+            let imageData = photo.image {
+            
+            DispatchQueue.main.async {
+                cell.imageView.image = UIImage(data: imageData as Data)
+            }
+           
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
     }
     
     
