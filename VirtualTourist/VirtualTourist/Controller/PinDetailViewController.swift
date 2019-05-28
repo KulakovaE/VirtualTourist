@@ -108,7 +108,7 @@ extension PinDetailViewController: MKMapViewDelegate {
     }
 }
 
-extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pinAnnotation?.pin.images?.count ?? 0
     }
@@ -126,14 +126,23 @@ extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDat
             DispatchQueue.main.async {
                 cell.imageView.image = UIImage(data: imageData as Data)
             }
-           
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let images = pinAnnotation?.pin.images else {return}
+        if let imageToDelete = images.allObjects[indexPath.item] as? Photo {
+            pinAnnotation?.pin.removeFromImages(imageToDelete)
+            try? DataController.shared.viewContext.save()
+            collectionView.deleteItems(at: [indexPath])
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellSize = (view.bounds.width - 12) / 2
+        return CGSize (width: cellSize, height: cellSize)
+    }
     
 }
