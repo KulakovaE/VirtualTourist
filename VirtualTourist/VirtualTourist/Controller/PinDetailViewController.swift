@@ -114,8 +114,8 @@ extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         guard let images = pinAnnotation.pin.images else { return cell }
-        let allImages = images.allObjects
-        if let photo = pinAnnotation.pin.images?.allObjects[indexPath.row] as? Photo,
+        
+        if let photo = images.allObjects[indexPath.row] as? Photo,
             let imageData = photo.image {
             DispatchQueue.main.async {
                 cell.imageView.image = UIImage(data: imageData as Data)

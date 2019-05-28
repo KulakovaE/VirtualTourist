@@ -49,7 +49,7 @@ class NetworkClient {
             }
             
             if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                if let photos = json?["photos"] as? [String: Any] {
+                if let photos = json["photos"] as? [String: Any] {
                     if let photo = photos["photo"] as? [[String: Any]] {
                         let searchPhotoPaths = photo.compactMap({ (dictionary) -> URL? in
                             let photoResponse = SearchPhotoResponse(dictionary: dictionary)
