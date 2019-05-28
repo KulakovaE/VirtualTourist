@@ -2,7 +2,7 @@
 //  SpinnerViewController.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-23.
+//  Created by Elena Kulakova on 2019-05-23.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 
@@ -23,20 +23,3 @@ class SpinnerViewController: UIViewController {
         spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }
-// How to use spinner.
-
-//let spinner = SpinnerViewController()
-//func showSpinner(){
-//    addChild(spinner)
-//    spinner.view.frame = view.frame
-//    view.addSubview(spinner.view)
-//    spinner.didMove(toParent: self)
-//}
-//
-//func hideSpinner(){
-//    DispatchQueue.main.async {
-//        self.spinner.willMove(toParent: nil)
-//        self.spinner.view.removeFromSuperview()
-//        self.spinner.removeFromParent()
-//    }
-//}

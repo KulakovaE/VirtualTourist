@@ -2,7 +2,7 @@
 //  NetworkClient.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-22.
+//  Created by Elena Kulakova on 2019-05-22.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 
@@ -26,7 +26,7 @@ class NetworkClient {
             return URL(string: stringValue)!
         }
     }
-    // TO DO: vidi ja array od Photo stavena e taka
+    
     class func searchPhotosFor(latitude: Double, longitude: Double, completion: @escaping ([URL], Error?)-> Void) {
         let url = Endpoints.searchPhotosFor(latitude: latitude, longitude: longitude).url
         
@@ -77,13 +77,9 @@ class NetworkClient {
                     DispatchQueue.main.async {
                         completion([],nil)
                     }
-                    
                 }
             }
-            
-           // print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }
-    
 }

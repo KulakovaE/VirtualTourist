@@ -2,7 +2,7 @@
 //  PinAnnotation.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-22.
+//  Created by Elena Kulakova on 2019-05-22.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 

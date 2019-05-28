@@ -2,7 +2,7 @@
 //  PinDetailViewController.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-22.
+//  Created by Elena Kulakova on 2019-05-22.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 
@@ -15,10 +15,6 @@ class PinDetailViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     var pinAnnotation: PinAnnotation?
     let spinner = SpinnerViewController()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -64,17 +60,16 @@ class PinDetailViewController: UIViewController {
                 }
             }
         }
-        
     }
     
-    func showSpinner(){
+    func showSpinner() {
         addChild(spinner)
         spinner.view.frame = view.frame
         view.addSubview(spinner.view)
         spinner.didMove(toParent: self)
     }
     
-    func hideSpinner(){
+    func hideSpinner() {
         DispatchQueue.main.async {
             self.spinner.willMove(toParent: nil)
             self.spinner.view.removeFromSuperview()
@@ -122,12 +117,10 @@ extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDat
         let allImages = images.allObjects
         if let photo = pinAnnotation.pin.images?.allObjects[indexPath.row] as? Photo,
             let imageData = photo.image {
-            
             DispatchQueue.main.async {
                 cell.imageView.image = UIImage(data: imageData as Data)
             }
         }
-        
         return cell
     }
     
@@ -144,5 +137,4 @@ extension PinDetailViewController: UICollectionViewDelegate, UICollectionViewDat
         let cellSize = (view.bounds.width - 12) / 2
         return CGSize (width: cellSize, height: cellSize)
     }
-    
 }

@@ -2,7 +2,7 @@
 //  DataController.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-20.
+//  Created by Elena Kulakova on 2019-05-20.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 

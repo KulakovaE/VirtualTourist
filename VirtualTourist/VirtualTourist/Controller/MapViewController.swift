@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  VirtualTourist
 //
-//  Created by Darko Kulakov on 2019-05-20.
+//  Created by Elena Kulakova on 2019-05-20.
 //  Copyright © 2019 Elena Kulakova. All rights reserved.
 //
 
@@ -35,7 +35,6 @@ class MapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         displayData(pins: self.pins)
-        
     }
     
     func fetchData() -> [Pin] {
@@ -81,7 +80,6 @@ class MapViewController: UIViewController {
                 let annotation = PinAnnotation(coordinate: coordinate, pin: newPin)
                 mapView.addAnnotation(annotation)
             } else {
-                //TO DO: show Error Message
             }
         }
     }
@@ -92,14 +90,14 @@ class MapViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func showSpinner(){
+    func showSpinner() {
         addChild(spinner)
         spinner.view.frame = view.frame
         view.addSubview(spinner.view)
         spinner.didMove(toParent: self)
     }
     
-    func hideSpinner(){
+    func hideSpinner() {
         DispatchQueue.main.async {
             self.spinner.willMove(toParent: nil)
             self.spinner.view.removeFromSuperview()
@@ -148,8 +146,7 @@ extension MapViewController: MKMapViewDelegate {
                     for imageUrl in response {
                         let photo = Photo(context: DataController.shared.viewContext)
                         photo.imageUrl = imageUrl
-                        
-                        
+
                         if let imageData = try? Data(contentsOf: imageUrl)  {
                             photo.image = imageData
                             pinAnnotation.pin.addToImages(photo)

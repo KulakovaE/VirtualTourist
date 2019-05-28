@@ -61,7 +61,7 @@
                                 </connections>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vEB-cX-e80">
-                                <rect key="frame" x="0.0" y="236" width="375" height="399"/>
+                                <rect key="frame" x="0.0" y="236" width="375" height="387"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="enq-iT-a2d">
                                     <size key="itemSize" width="150" height="150"/>
@@ -121,8 +121,9 @@
                             <constraint firstItem="Tw5-s3-dQm" firstAttribute="top" secondItem="cw8-SJ-oOY" secondAttribute="top" id="IcE-nD-9wc"/>
                             <constraint firstItem="3WY-yw-clJ" firstAttribute="trailing" secondItem="cw8-SJ-oOY" secondAttribute="trailing" id="KSB-R0-PlC"/>
                             <constraint firstItem="vEB-cX-e80" firstAttribute="leading" secondItem="cw8-SJ-oOY" secondAttribute="leading" id="MLi-aR-IJh"/>
+                            <constraint firstItem="3WY-yw-clJ" firstAttribute="top" secondItem="vEB-cX-e80" secondAttribute="bottom" id="Vpl-U1-87f"/>
                             <constraint firstItem="3WY-yw-clJ" firstAttribute="leading" secondItem="cw8-SJ-oOY" secondAttribute="leading" id="bKB-Hi-uxd"/>
-                            <constraint firstItem="vEB-cX-e80" firstAttribute="bottom" secondItem="3WY-yw-clJ" secondAttribute="top" constant="12" id="gXg-rU-2cx"/>
+                            <constraint firstItem="vEB-cX-e80" firstAttribute="bottom" secondItem="3WY-yw-clJ" secondAttribute="top" id="gXg-rU-2cx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cw8-SJ-oOY"/>
                     </view>
