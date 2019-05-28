@@ -80,6 +80,7 @@ class MapViewController: UIViewController {
                 let annotation = PinAnnotation(coordinate: coordinate, pin: newPin)
                 mapView.addAnnotation(annotation)
             } else {
+                showAlert(title: "Warning", message: "Could not create new pin, please try again.")
             }
         }
     }
